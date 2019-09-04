@@ -4,12 +4,11 @@ import cats.effect.Sync
 import cats.implicits._
 import monix.eval.Task
 import monix.execution.Scheduler
-import monix.reactive.{ObservableLike, Observable}
+import monix.reactive.{Observable, ObservableLike, Observer}
 import monix.reactive.subjects.PublishSubject
-import org.scalajs.dom
-import outwatch._
 
 object Store {
+  type ProHandler[-I, +O] = Observable[O] with Observer[I]
 
   /**
    * A Function that applies an Action onto the Stores current state.
